@@ -1,143 +1,195 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const PortfolioShowcase = () => {
-  const [hoveredProject, setHoveredProject] = useState(null);
+const projects = [
+  {
+    id: 1,
+    title: "FITPREPS",
+    name: "Fitpreps",
+    subtitle: "Healthy food for winners",
+    description: "Small Description",
+    tags: ["Development", "Design"],
+    year: "2024",
+    bgColor: "bg-orange-500",
+    textColor: "text-white",
+    image: "./home/img2.png"
+  },
+  {
+    id: 2,
+    title: "MOISE",
+    name: "Moise",
+    subtitle: "Premium baby care products",
+    description: "Small Description",
+    tags: ["Development", "Design"],
+    year: "2024",
+    bgColor: "bg-gray-200",
+    textColor: "text-white",
+    image: "./home/img1.png"
+  }
+];
 
-  const projects = [
-    {
-      id: 1,
-      name: 'Fitpreps',
-      tagline: 'Healthy food for winners',
-      description: 'A comprehensive meal prep delivery platform with custom nutrition planning and e-commerce functionality.',
-      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80',
-      tags: ['Development', 'Design', 'SEO'],
-      year: '2024',
-      color: 'bg-orange-500'
-    },
-    {
-      id: 2,
-      name: 'Moise',
-      tagline: 'Premium baby care essentials',
-      description: 'E-commerce platform for organic baby products with subscription management and parenting resources.',
-      image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
-      tags: ['Development', 'Design'],
-      year: '2024',
-      color: 'bg-slate-400'
-    }
-  ];
-
+export default function PortfolioShowcase() {
+const [hoveredSection, setHoveredSection] = useState(null);
   return (
-    <div className="min-h-screen bg-zinc-900">
-      {/* Hero Stats Section */}
-      <section className="bg-zinc-950 text-white py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-sm uppercase tracking-widest text-zinc-400 mb-6">Discover How</p>
-          <h1 className="text-5xl md:text-6xl font-bold mb-16 max-w-3xl leading-tight">
-            Our tailored strategies<br />have driven growth
-          </h1>
-          
-          <div className="flex flex-wrap gap-16">
-            <div>
-              <div className="text-7xl font-bold mb-2">40+</div>
-              <div className="text-xl text-zinc-400">projects</div>
-            </div>
-            <div>
-              <div className="text-7xl font-bold mb-2">60+</div>
-              <div className="text-xl text-zinc-400">happy clients</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto space-y-8">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer transition-transform duration-500 hover:scale-[1.02]"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
-              {/* Project Card */}
-              <div className={`relative ${project.color} min-h-[500px] flex items-end p-8 md:p-12`}>
-                {/* Background Image */}
-                <div className="absolute inset-0 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 w-full">
-                  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                    {/* Left Side - Project Info */}
-                    <div className="flex-1">
-                      <h2 className="text-6xl md:text-7xl font-bold text-white mb-3 tracking-tight">
-                        {project.name.toUpperCase()}
-                      </h2>
-                      <p className="text-xl md:text-2xl text-white/90 mb-4 font-medium">
-                        {project.tagline}
-                      </p>
-                      
-                      {/* Description - Shows on hover */}
-                      <p className={`text-white/80 text-base md:text-lg max-w-2xl transition-all duration-500 ${
-                        hoveredProject === project.id 
-                          ? 'opacity-100 translate-y-0 max-h-20' 
-                          : 'opacity-0 translate-y-4 max-h-0'
-                      }`}>
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* Right Side - Tags and Year */}
-                    <div className="flex flex-col items-start md:items-end gap-4">
-                      <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white font-semibold">
-                        {project.year}
-                      </div>
-                      <div className="flex flex-wrap gap-2 justify-start md:justify-end">
-                        {project.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="px-5 py-2 bg-white/90 hover:bg-white text-zinc-900 rounded-full text-sm font-semibold transition-colors duration-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+    <div className="min-h-auto bg-black">
+     {/* Mobile Layout - Stacked vertically */}
+      <div className="lg:hidden">
+        {projects.map((project) => (
+          <section 
+            key={project.id}
+            className={`max-h-[250px] ${project.bgColor} relative overflow-hidden`}
+            style={{
+              backgroundImage: `url(${project.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            {/* Overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
+            
+            {/* Content Container */}
+            <div className="relative h-full min-h-[250px] flex flex-col justify-between p-4 sm:p-4">
+              
+              {/* Top spacer */}
+              <div className="flex-1"></div>
+              
+              {/* Bottom Content */}
+              <div className="space-y-4">
+                <div className="flex items-end justify-between gap-4">
+                  <h2 className={`text-[24px] font-medium ${project.textColor}`}>
+                    {project.name}
+                  </h2>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 justify-end">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`px-4 py-1.5 rounded-full border ${
+                          project.textColor === 'text-white' 
+                            ? 'border-white/60 text-white bg-white/10' 
+                            : 'border-gray-900/40 text-gray-900 bg-white/20'
+                        } text-sm font-medium backdrop-blur-sm`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-
-                {/* Hover Overlay Effect */}
-                <div className={`absolute inset-0 bg-black/20 transition-opacity duration-500 ${
-                  hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
-                }`}></div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        ))}
+      </div>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to start your project?
-          </h2>
-          <p className="text-xl text-zinc-400 mb-8">
-            Let's create something amazing together
-          </p>
-          <button className="px-8 py-4 bg-white text-zinc-900 rounded-full font-semibold text-lg hover:bg-zinc-100 transition-colors duration-300">
-            Get in Touch
-          </button>
+      {/* Desktop Layout - Side by side */}
+       <div className="hidden lg:block">
+        <div className="min-h-[800px] flex max-w-[1440px] mx-auto overflow-hidden">
+          {/* Fitpreps - Left Side */}
+          <section 
+            className={`bg-orange-500 relative overflow-hidden flex flex-col justify-between p-12 xl:p-16 transition-all duration-700 ease-in-out cursor-pointer ${
+              hoveredSection === 'moise' ? 'w-[15%]' : 'w-[85%]'
+            }`}
+            onMouseEnter={() => setHoveredSection('fitpreps')}
+            onMouseLeave={() => setHoveredSection(null)}
+          >
+            {/* Large Title - Centered */}
+            <div className={`flex-1 flex items-center justify-center transition-opacity duration-500 ${
+              hoveredSection === 'fitpreps' ? 'opacity-0' : 'opacity-100'
+            }`}>
+            </div>
+            {/* Bottom Content */}
+            <div className={`relative z-10 flex items-end justify-between transition-opacity duration-500 ${
+              hoveredSection === 'moise' ? 'opacity-0' : 'opacity-100'
+            }`}>
+              {/* Left: Name */}
+              <div>
+                <h2 className="text-3xl xl:text-4xl font-semibold text-white mb-2">
+                  Fitpreps - Healthy food for winners
+                </h2>
+                <p className="text-lg text-white/80">Small Description</p>
+              </div>
+
+              {/* Right: Tags and Year */}
+              <div className="flex flex-col items-end gap-4">
+                <div className="px-6 py-2 rounded-full bg-white/20 backdrop-blur-md text-white text-lg font-semibold">
+                  2024
+                </div>
+                <div className="flex flex-wrap gap-3 justify-end">
+                  {projects[0].tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-5 py-2 rounded-full border-2 border-white/40 text-white text-sm font-medium backdrop-blur-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 opacity-30"
+              style={{
+                backgroundImage: `url(${projects[0].image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+
+          </section>
+
+          {/* Moise - Right Side */}
+          <section 
+            className={`bg-gray-200 relative overflow-hidden flex flex-col justify-between p-12 xl:p-16 transition-all duration-700 ease-in-out cursor-pointer ${
+              hoveredSection === 'fitpreps' ? 'w-[15%]' : 'w-[85%]'
+            }`}
+            onMouseEnter={() => setHoveredSection('moise')}
+            onMouseLeave={() => setHoveredSection(null)}
+          >
+            {/* Large Title - Centered */}
+            <div className={`flex-1 flex items-center justify-center transition-opacity duration-500 ${
+              hoveredSection === 'fitpreps' ? 'opacity-0' : 'opacity-100'
+            }`}>
+            </div>
+
+            {/* Bottom Content */}
+            <div className={`relative z-10 flex items-end justify-between transition-opacity duration-500 ${
+              hoveredSection === 'fitpreps' ? 'opacity-0' : 'opacity-100'
+            }`}>
+              {/* Left: Name */}
+              <div>
+                <h2 className="text-3xl xl:text-4xl font-semibold text-gray-900 mb-2">
+                  Moise - Premium baby care products
+                </h2>
+                <p className="text-lg text-gray-700">Small Description</p>
+              </div>
+
+              {/* Right: Tags */}
+              <div className="flex flex-wrap gap-3 justify-end">
+                {projects[1].tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-5 py-2 rounded-full border-2 border-gray-900/30 text-gray-900 text-sm font-medium backdrop-blur-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Background Image - More visible */}
+            <div 
+              className="absolute inset-0 opacity-40"
+              style={{
+                backgroundImage: `url(${projects[1].image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
-};
-
-export default PortfolioShowcase;
+} 
