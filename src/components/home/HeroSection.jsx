@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section className="max-w-[1440px] mx-auto relative min-h-auto bg-black text-white overflow-hidden">
+    <section className=" max-w-[1440px] mx-auto relative min-h-auto bg-black text-white overflow-hidden">
       
       {/* Desktop Background */}
-      <div className="hidden md:block absolute inset-0 z-0">
+      <div className="hidden md:block absolute  top-0 left-0 inset-0 z-0">
         <Image 
           src="/home/bg1.png"
           alt="Background"
@@ -56,7 +56,7 @@ export default function HeroSection() {
 
             <Link 
               href="/contact"
-              className="inline-block bg-white text-black px-8 py-2 rounded-[5px] font-medium hover:bg-gray-200 transition text-base"
+              className="w-full md:w-[160px] flex justify-center items-center  bg-white text-black px-8 py-2 rounded-[5px] font-medium hover:bg-gray-200 transition text-base"
             >
               Work with us
             </Link>

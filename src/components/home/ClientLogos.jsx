@@ -5,7 +5,7 @@ const ClientLogos = () => {
   return (
     <> 
       {/* Client Logos */}
-      <div className="max-w-[1440px] mx-auto pt-12 pb-20 px-4 md:px-10 bg-[#171719]">
+      <div className="max-w-[1440px] mx-auto pt-5 pb-5 px-4 md:px-10 bg-[#171719]">
         
      <div className="md:flex justify-between">
         <p className="text-gray-400 mb-8">

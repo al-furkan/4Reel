@@ -1,13 +1,17 @@
 'use client';
 
+import BrandLandingPage from "@/components/commoncomponent/BrandLandingPage";
+import MarqueeSection from "@/components/commoncomponent/MarqueeSection";
+import Approach from "@/components/home/Approach";
 import ClientLogos from "@/components/home/ClientLogos";
 import HeroSection from "@/components/home/HeroSection";
-import PortfolioShowcase from "@/components/home/PortfolioShowcase";
+import PortfolioShowcase from "@/components/commoncomponent/PortfolioShowcase";
+import ProcessSection from "@/components/home/ProcessSection";
 import Service from "@/components/home/Service";
 import State from "@/components/home/Stats";
-import TestimonialSection from "@/components/home/TestimonialSection";
-import VideoProductionLanding from "@/components/home/VideoProductionLanding";
-import BrandLandingPage from "@/components/home/BrandLandingPage";
+import TestimonialSection from "@/components/commoncomponent/TestimonialSection";
+import VideoProductionLanding from "@/components/commoncomponent/VideoProductionLanding";
+
 
 
 export default function HomePage() {
@@ -21,6 +25,9 @@ export default function HomePage() {
       <PortfolioShowcase />
       <TestimonialSection />
       <VideoProductionLanding />
+      <ProcessSection />
+      <Approach />
+      <MarqueeSection />
       <BrandLandingPage/>
     </>
   );
